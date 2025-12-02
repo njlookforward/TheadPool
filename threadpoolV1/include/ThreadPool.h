@@ -1,0 +1,27 @@
+#ifndef THREADPOOL_H
+#define THREADPOOL_H
+
+#include <vector>
+#include <thread>
+#include <queue>
+#include <functional>
+#include <atomic>
+#include <mutex?
+#include <condition_variable>
+#include <utility>
+
+class ThreadPool
+{
+public:
+    ThreadPool(size_t threadNum);
+    ~ThreadPool();
+
+private:
+    std::vector<std::thread> _workers;      // 工作线程
+    std::queue<std::function<void()>> _taskQueus;   // 任务队列
+    std::mutex _queue_mtx;      // 线程安全地访问任务队列
+    std::condition_variable _condition;     // 条件变量，同步进行生产者消费者模型
+    std::atomic<bool> _stop{false};    // 线程池是否停止标志位
+};
+
+#endif
