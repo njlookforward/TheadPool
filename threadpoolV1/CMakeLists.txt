@@ -18,7 +18,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
-else if(MSVC)
+elseif(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /w4")
 endif()
 
@@ -29,5 +29,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_subdirectory(src)
 add_subdirectory(test)
 
-# 安装配置，这个不知道是啥意思
+# 安装配置，为了在执行sudo make install的时候，
+# 可以将include目录中的内容安装到系统目录下
 install(DIRECTORY include/ DESTINATION include/threadpool)
