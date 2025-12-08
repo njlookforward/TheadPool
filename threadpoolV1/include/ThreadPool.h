@@ -18,7 +18,12 @@ public:
     ThreadPool(size_t threadNum);
     ~ThreadPool();
 
+    // 返回此时的线程池的运行状态
+    bool isStopped() const {    return _stop;   }
+
 private:
+    void workerThread();    // 工作线程应该执行的函数
+
     std::vector<std::thread> _workers;      // 工作线程
     std::queue<std::function<void()>> _taskQueue;   // 任务队列
     std::mutex _queue_mtx;      // 线程安全地访问任务队列

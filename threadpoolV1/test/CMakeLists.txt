@@ -13,4 +13,5 @@ function(add_pool_test test_name test_src)
 endfunction()
 
 # 添加测试，执行上面的函数
-add_pool_test(test_day1_basic ${SRC})
+add_pool_test(test_day1_basic test1.cpp)
+add_pool_test(test_day2_basic test2.cpp)
